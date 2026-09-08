@@ -18,5 +18,5 @@ MoonTusCore 将 tus 1.0 可恢复上传的协议判断与 Web 框架、网络 I/
 本地 v0.1 含 35 个 .mbt 文件、4995 行 MoonBit 源码，其中排除空行和纯行注释后的有效代码 4363 行；92 项测试在 wasm、wasm-gc、js、native 四目标共 368 次全部通过。
 v0.1 不实现 Creation-With-Upload、Checksum、Expiration、Termination、Concatenation、HTTP 服务端/客户端、认证、租户配额或病毒扫描；内存存储仅用于参考与测试。
 项目检索记录未发现 Mooncakes 或公开 MoonBit 仓库中已有 tus 1.0 服务端状态机；通用 Web 框架仅提供传输抽象，不覆盖本项目的偏移、延迟长度和存储原子语义，发布前将再次检索。
-交付 Apache-2.0 源码、完整文档、可执行示例、测试、CI 和可追踪提交历史；GitHub/Gitlink 推送及 mooncakes.io 发布按参赛者后续指令完成。
+交付 Apache-2.0 源码、完整文档、可执行示例、测试、CI 和可追踪提交历史；GitHub 仓库已公开，Gitlink 镜像及 mooncakes.io 发布尚待完成。
 协议语义依据 MIT 许可的 tus 1.0.0 公开规范；项目未复制其他 tus 实现代码、无运行时第三方包依赖，不包含私有、闭源、商业或来源不明内容。

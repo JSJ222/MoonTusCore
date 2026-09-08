@@ -40,8 +40,8 @@ After publication:
 moon add JSJ222/tus-core
 ~~~
 
-Until publication is authorized, use this local repository directly. No remote
-repository or Mooncakes release has been created by the current work.
+The source repository is public at
+https://github.com/JSJ222/MoonTusCore. The Mooncakes release remains pending.
 
 ## Quick start
 
@@ -124,9 +124,8 @@ approximated. See [protocol scope](docs/protocol-scope.md).
 
 ## Project status
 
-The local v0.1 implementation is buildable and tested. Public GitHub push,
-Gitlink mirroring, and Mooncakes publication are intentionally pending an
-explicit owner instruction.
+The v0.1 implementation is buildable and tested, and its GitHub repository is
+public. Gitlink mirroring and Mooncakes publication remain pending.
 
 ## License
 

@@ -8,5 +8,5 @@
 5. Run moon publish --dry-run, inspect the package, then publish.
 6. Verify the public Mooncakes page, installation command, tag, and notes.
 
-GitHub/Gitlink push and Mooncakes publication are pending and intentionally not
-performed by the current local implementation task.
+The GitHub repository has been created. Gitlink mirroring and Mooncakes
+publication remain pending.

@@ -37,5 +37,5 @@ v0.1 不实现 Creation-With-Upload、Checksum、Expiration、Termination、
 Concatenation、HTTP 服务端/客户端、认证、租户配额和病毒扫描，也不会在
 OPTIONS 中宣称支持这些扩展。完整边界见 docs/protocol-scope.md。
 
-当前工作只完成本地仓库。GitHub/Gitlink 推送及 Mooncakes 发布需等待项目所有者
-后续明确指令。
+GitHub 公开仓库位于 https://github.com/JSJ222/MoonTusCore；Gitlink 镜像与
+Mooncakes 发布尚待完成。

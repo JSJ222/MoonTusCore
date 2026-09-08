@@ -6,4 +6,4 @@
 - Add bounded parsing, structured errors, traces, and atomic append plans.
 - Add in-memory engine, scenarios, CLI, example, and conformance vectors.
 
-Public repository and Mooncakes release are pending owner authorization.
+The GitHub repository is public; the Mooncakes release remains pending.

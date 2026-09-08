@@ -2,13 +2,13 @@
 
 Date: 2026-09-08 (Asia/Shanghai).
 
-This report applies the local, pre-publication checks from osc2026-guide. It
-does not claim completion of owner-deferred GitHub, Gitlink, CI service, or
-Mooncakes steps.
+This report applies the local checks from osc2026-guide. It does not claim
+completion of Gitlink, hosted CI, or Mooncakes steps.
 
 ## Result
 
-- Project identity: independent MoonTusCore Git repository on main, no remote.
+- Project identity: independent MoonTusCore repository on main, with public
+  GitHub remote https://github.com/JSJ222/MoonTusCore.
 - Scope: tus 1.0 Core, Creation, and Creation-Defer-Length.
 - MoonBit size: 35 .mbt files, 4995 physical lines, 4363 non-empty non-comment
   effective lines.
@@ -43,7 +43,6 @@ second moon check on the extracted package. The command then attempted the
 Mooncakes publish endpoint and failed before publication; no release was
 created.
 
-Final contest acceptance still requires the owner-authorized public push,
-successful hosted CI, public repository accessibility, Mooncakes publication,
-and verification of the public package page. Re-run the ecosystem overlap
-search immediately before submission.
+Final contest acceptance still requires successful hosted CI, Mooncakes
+publication, and verification of the public package page. Re-run the ecosystem
+overlap search immediately before submission.
