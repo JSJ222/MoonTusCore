@@ -1,7 +1,9 @@
 # MoonTusCore 项目申报书
 - 项目名称：MoonTusCore：框架与存储无关的 tus 1.0 可恢复上传协议状态机
-- 参赛者：欧阳金辉；联系方式：19386561764
+- 参赛者：蒋尚君
+- 联系方式：
 - GitHub 仓库：https://github.com/JSJ222/MoonTusCore
+- Gitlink 仓库：https://gitlink.org.cn/JSJ222/MoonTusCore
 - 项目方向：MoonBit 原生网络协议基础库、可恢复上传状态机与开发工具
 - 项目性质：原创项目，非移植；许可证：Apache License 2.0
 ## 项目简介与使用场景
