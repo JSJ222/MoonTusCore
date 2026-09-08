@@ -68,13 +68,13 @@ pub fn tus_error(
 }
 
 ///|
-pub fn invalid_method(method : String) -> TusError {
+pub fn invalid_method(http_method : String) -> TusError {
   tus_error(
     InvalidMethod,
     "TUS_METHOD_UNSUPPORTED",
     "method is not supported by the configured tus endpoint",
     status=405,
-    actual=Some(method),
+    actual=Some(http_method),
   )
 }
 
