@@ -35,7 +35,7 @@ test "json report has stable schema and escaped metadata" {
   let rendered = render_scenario_json(sample_report())
   assert_eq(rendered.contains("\"schema\":\"moontuscore.scenario.v1\""), true)
   assert_eq(rendered.contains("\"succeeded\":true"), true)
-  assert_eq(rendered.contains("\"base64\":\"YSVi\""), true)
+  assert_eq(rendered.contains("\"base64\":\"YSJi\""), true)
   assert_eq(rendered.contains("\"storedBytes\":3"), true)
 }
 
