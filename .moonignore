@@ -1,0 +1,12 @@
+# Build products and local dependency caches
+/target/
+/_build/
+/.mooncakes/
+
+# Local development artifacts
+*.tmp
+*.log
+
+# Contest administration contains personal contact information and must never
+# be included in the Mooncakes distribution archive.
+/MoonTusCore项目申报书.md
