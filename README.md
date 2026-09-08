@@ -37,7 +37,7 @@ request into TusRequest; storage adapters commit only a validated AppendPlan.
 After publication:
 
 ~~~bash
-moon add oyjh0381/tus-core
+moon add JSJ222/tus-core
 ~~~
 
 Until publication is authorized, use this local repository directly. No remote

@@ -1,10 +1,10 @@
-name = "oyjh0381/tus-core"
+name = "JSJ222/tus-core"
 
 version = "0.1.0"
 
 readme = "README.mbt.md"
 
-repository = "https://github.com/oyjh0381/MoonTusCore"
+repository = "https://github.com/JSJ222/MoonTusCore"
 
 license = "Apache-2.0"
 

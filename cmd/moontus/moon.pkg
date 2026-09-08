@@ -1,5 +1,5 @@
 import {
-  "oyjh0381/tus-core" @tus,
+  "JSJ222/tus-core" @tus,
   "moonbitlang/core/env",
 }
 
