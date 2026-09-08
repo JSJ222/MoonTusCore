@@ -1,0 +1,450 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "oyjh0381/tus-core"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub const TUS_VERSION : String = "1.0.0"
+
+pub fn append_trace(AppendPlan) -> Array[TraceStep]
+
+pub fn ascii_equal_ignore_case(String, String) -> Bool
+
+pub fn ascii_lower(String) -> String
+
+pub fn available_demos() -> Array[String]
+
+pub fn body_length_mismatch(Int, Int) -> TusError
+
+pub fn checked_add_i64(Int64, Int64, field_name? : String) -> Result[Int64, TusError]
+
+pub fn checked_body_end(Int64, Int) -> Result[Int64, TusError]
+
+pub fn classify_path(String, String) -> Result[TusRoute, TusError]
+
+pub fn config(collection_path? : String, limits? : TusLimits, allow_creation? : Bool, allow_deferred_length? : Bool) -> TusConfig
+
+pub fn conflict_demo_actions() -> Array[ScenarioAction]
+
+pub fn core_conformance_vectors() -> Array[ConformanceVector]
+
+pub fn creation_trace(CreationPlan) -> Array[TraceStep]
+
+pub fn decimal(Int64) -> String
+
+pub fn decode_base64(String, Int) -> Result[Bytes, TusError]
+
+pub fn deferred_demo_actions() -> Array[ScenarioAction]
+
+pub fn demo_help() -> String
+
+pub fn duplicate_header(String) -> TusError
+
+pub fn encode_base64(Bytes) -> String
+
+pub fn error_kind_name(TusErrorKind) -> String
+
+pub fn failure_response(TusError, headers? : Headers, trace? : Array[TraceStep]) -> TusResponse
+
+pub fn handle_creation(TusRequest, MemoryStore, TusConfig) -> TusResponse
+
+pub fn handle_head(TusRequest, MemoryStore, TusConfig) -> TusResponse
+
+pub fn handle_patch(TusRequest, MemoryStore, TusConfig) -> TusResponse
+
+pub fn head_headers(UploadRecord) -> Headers
+
+pub fn head_trace(UploadRecord) -> Array[TraceStep]
+
+pub fn header(String, String) -> HeaderField
+
+pub fn integer_overflow(String, String) -> TusError
+
+pub fn invalid_integer(String, String) -> TusError
+
+pub fn invalid_metadata(String) -> TusError
+
+pub fn invalid_method(String) -> TusError
+
+pub fn invalid_path(String) -> TusError
+
+pub fn is_canonical_decimal(String) -> Bool
+
+pub fn is_http_token(String) -> Bool
+
+pub fn is_metadata_key(String) -> Bool
+
+pub fn is_safe_identifier(String) -> Bool
+
+pub fn lifecycle(Int64, UploadLength) -> UploadLifecycle
+
+pub fn lifecycle_name(UploadLifecycle) -> String
+
+pub fn limit_demo_actions() -> Array[ScenarioAction]
+
+pub fn metadata_decoded_size(Array[MetadataEntry]) -> Int
+
+pub fn metadata_encoded_get(Array[MetadataEntry], String) -> String?
+
+pub fn metadata_entry(String, Bytes) -> Result[MetadataEntry, TusError]
+
+pub fn metadata_get(Array[MetadataEntry], String) -> Bytes?
+
+pub fn missing_header(String, TusErrorKind) -> TusError
+
+pub fn offset_mismatch(Int64, Int64) -> TusError
+
+pub fn optional_defer_length(Headers) -> Result[Bool, TusError]
+
+pub fn optional_upload_length(Headers) -> Result[Int64?, TusError]
+
+pub fn options_request(path? : String) -> TusRequest
+
+pub fn parse_http_method(String) -> HttpMethod
+
+pub fn parse_non_negative_i64(String, String) -> Result[Int64, TusError]
+
+pub fn parse_non_negative_int(String, String) -> Result[Int, TusError]
+
+pub fn parse_upload_metadata(String, TusLimits) -> Result[Array[MetadataEntry], TusError]
+
+pub fn plan_append(TusRequest, UploadRecord, TusConfig) -> Result[AppendPlan, TusError]
+
+pub fn plan_creation(TusRequest, TusConfig) -> Result[CreationPlan, TusError]
+
+pub fn render_response_text(TusResponse) -> String
+
+pub fn render_scenario_json(ScenarioReport) -> String
+
+pub fn render_scenario_text(ScenarioReport) -> String
+
+pub fn request(String, String, headers? : Headers, body? : Bytes) -> TusRequest
+
+pub fn require_content_length(TusRequest) -> Result[Int, TusError]
+
+pub fn require_tus_version(Headers) -> Result[Unit, TusError]
+
+pub fn required_upload_offset(Headers) -> Result[Int64, TusError]
+
+pub fn resource_path(String, String) -> String
+
+pub fn response_error_code(TusResponse) -> String?
+
+pub fn response_offset(TusResponse) -> Int64?
+
+pub fn run_conformance_suite(Array[ConformanceVector], config? : TusConfig) -> Result[ConformanceReport, TusError]
+
+pub fn run_conformance_vector(ConformanceVector, config? : TusConfig) -> Result[ConformanceResult, TusError]
+
+pub fn run_named_demo(String, config? : TusConfig) -> Result[ScenarioReport, TusError]
+
+pub fn run_scenario(Array[ScenarioAction], config? : TusConfig) -> Result[ScenarioReport, TusError]
+
+pub fn serialize_upload_metadata(Array[MetadataEntry]) -> String
+
+pub fn storage_conflict(String) -> TusError
+
+pub fn success_response(Int, headers? : Headers, trace? : Array[TraceStep]) -> TusResponse
+
+pub fn successful_demo_actions() -> Array[ScenarioAction]
+
+pub fn supported_extensions(TusConfig) -> Array[String]
+
+pub fn trace(String, String, String) -> TraceStep
+
+pub fn trim_ows(String) -> String
+
+pub fn tus_error(TusErrorKind, String, String, status? : Int, header_name? : String?, expected? : String?, actual? : String?) -> TusError
+
+pub fn unsupported_version(String) -> TusError
+
+pub fn upload_complete(String) -> TusError
+
+pub fn upload_length_name(UploadLength) -> String
+
+pub fn upload_not_found(String) -> TusError
+
+pub fn upload_record(String, UploadLength, metadata? : Array[MetadataEntry]) -> UploadRecord
+
+pub fn upload_too_large(Int64, Int64) -> TusError
+
+pub fn validate_append_plan(UploadRecord, AppendPlan, TusLimits) -> Result[Unit, TusError]
+
+pub fn validate_config(TusConfig) -> Result[Unit, TusError]
+
+pub fn validate_declared_size(Int64, TusLimits) -> Result[Unit, TusError]
+
+pub fn validate_patch_size(Bytes, TusLimits) -> Result[Unit, TusError]
+
+pub fn validate_record(UploadRecord, TusLimits) -> Result[Unit, TusError]
+
+pub fn validate_request(TusRequest, TusConfig) -> Result[TusRoute, TusError]
+
+pub fn version_response_headers() -> Headers
+
+// Errors
+
+// Types and methods
+pub(all) struct AppendPlan {
+  identifier : String
+  expected_revision : Int64
+  old_offset : Int64
+  new_offset : Int64
+  resolved_length : UploadLength
+  body : Bytes
+  completes_upload : Bool
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ConformanceExpectation {
+  status : Int
+  error_code : String?
+  response_offset : Int64?
+  store : StoreExpectation
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ConformanceReport {
+  results : Array[ConformanceResult]
+  passed : Int
+  failed : Int
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ConformanceResult {
+  name : String
+  passed : Bool
+  response : TusResponse
+  findings : Array[String]
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ConformanceVector {
+  name : String
+  initial_records : Array[UploadRecord]
+  request : TusRequest
+  expected : ConformanceExpectation
+} derive(Eq, @debug.Debug)
+
+pub(all) struct CreationPlan {
+  length : UploadLength
+  metadata : Array[MetadataEntry]
+} derive(Eq, @debug.Debug)
+
+pub(all) struct HeaderField {
+  name : String
+  value : String
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Headers {
+  entries : Array[HeaderField]
+} derive(Eq, @debug.Debug)
+pub fn Headers::add(Self, String, String) -> Self
+pub fn Headers::as_array(Self) -> Array[HeaderField]
+pub fn Headers::combined(Self, String) -> String?
+pub fn Headers::contains(Self, String) -> Bool
+pub fn Headers::count(Self, String) -> Int
+pub fn Headers::empty() -> Self
+pub fn Headers::first(Self, String) -> String?
+pub fn Headers::from_array(Array[HeaderField]) -> Self
+pub fn Headers::last(Self, String) -> String?
+pub fn Headers::len(Self) -> Int
+pub fn Headers::replace(Self, String, String) -> Self
+pub fn Headers::required_singleton(Self, String, TusErrorKind) -> Result[String, TusError]
+pub fn Headers::singleton(Self, String) -> Result[String?, TusError]
+pub fn Headers::validate(Self, TusLimits) -> Result[Unit, TusError]
+pub fn Headers::values(Self, String) -> Array[String]
+pub fn Headers::wire_size(Self) -> Int
+pub fn Headers::without(Self, String) -> Self
+
+pub(all) enum HttpMethod {
+  Options
+  Post
+  Head
+  Patch
+  Other(String)
+} derive(Eq, @debug.Debug)
+pub fn HttpMethod::name(Self) -> String
+
+pub struct MemoryStore {
+  // private fields
+}
+pub fn MemoryStore::commit_append(Self, AppendPlan, TusLimits) -> Result[UploadRecord, TusError]
+pub fn MemoryStore::contains(Self, String) -> Bool
+pub fn MemoryStore::count(Self) -> Int
+pub fn MemoryStore::create(Self, CreationPlan, TusLimits) -> Result[UploadRecord, TusError]
+pub fn MemoryStore::get(Self, String) -> Result[UploadRecord, TusError]
+pub fn MemoryStore::import_record(Self, UploadRecord, TusLimits) -> Result[Unit, TusError]
+pub fn MemoryStore::is_empty(Self) -> Bool
+pub fn MemoryStore::list(Self) -> Array[UploadRecord]
+pub fn MemoryStore::new(seed? : Int64) -> Self
+
+pub(all) struct MetadataEntry {
+  key : String
+  value : Bytes
+  encoded_value : String
+} derive(Eq, @debug.Debug)
+
+pub(all) enum ScenarioAction {
+  Discover
+  CreateKnown(String, Int64, Array[MetadataEntry])
+  CreateDeferred(String, Array[MetadataEntry])
+  Inspect(String)
+  Append(String, Int64, Bytes, Int64?)
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ScenarioEvent {
+  index : Int
+  operation : String
+  resource_name : String?
+  identifier : String?
+  status : Int
+  offset : Int64?
+  error_code : String?
+  traces : Array[TraceStep]
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ScenarioReport {
+  events : Array[ScenarioEvent]
+  uploads : Array[UploadRecord]
+  succeeded : Bool
+} derive(Eq, @debug.Debug)
+
+pub(all) enum StoreExpectation {
+  IgnoreStore
+  ResourceMissing(String)
+  ResourceState(String, Int64, UploadLength, UploadLifecycle, Bytes)
+} derive(Eq, @debug.Debug)
+
+pub(all) struct TraceStep {
+  code : String
+  message : String
+  protocol_section : String
+} derive(Eq, @debug.Debug)
+
+pub(all) struct TusConfig {
+  collection_path : String
+  limits : TusLimits
+  allow_creation : Bool
+  allow_deferred_length : Bool
+} derive(Eq, @debug.Debug)
+pub fn TusConfig::default() -> Self
+
+pub struct TusEngine {
+  config : TusConfig
+  // private fields
+}
+pub fn TusEngine::handle(Self, TusRequest) -> TusResponse
+pub fn TusEngine::new(config? : TusConfig, store? : MemoryStore) -> Result[Self, TusError]
+pub fn TusEngine::snapshot(Self, String) -> Result[UploadRecord, TusError]
+pub fn TusEngine::upload_count(Self) -> Int
+pub fn TusEngine::uploads(Self) -> Array[UploadRecord]
+
+pub(all) struct TusError {
+  kind : TusErrorKind
+  code : String
+  message : String
+  status : Int
+  header_name : String?
+  expected : String?
+  actual : String?
+} derive(Eq, @debug.Debug)
+
+pub(all) enum TusErrorKind {
+  InvalidMethod
+  InvalidPath
+  InvalidHeaderName
+  UnsafeHeaderValue
+  MissingTusResumable
+  UnsupportedVersion
+  DuplicateSingletonHeader
+  InvalidUnsignedInteger
+  IntegerOverflow
+  MissingUploadOffset
+  OffsetMismatch
+  MissingContentType
+  InvalidContentType
+  MissingContentLength
+  BodyLengthMismatch
+  MissingUploadLength
+  ConflictingUploadLength
+  InvalidDeferredLength
+  UploadTooLarge
+  UploadNotFound
+  UploadAlreadyComplete
+  UploadTerminated
+  InvalidMetadata
+  DuplicateMetadataKey
+  MetadataTooLarge
+  TooManyMetadataEntries
+  InvalidBase64
+  HeaderCountExceeded
+  HeaderBytesExceeded
+  BodyTooLarge
+  IdentifierExhausted
+  StorageConflict
+  StorageFailure
+  UnsupportedExtension
+  InvalidScenario
+  UnsupportedScenario
+  InternalInvariant
+} derive(Eq, @debug.Debug)
+
+pub(all) struct TusLimits {
+  max_upload_size : Int64
+  max_patch_bytes : Int
+  max_header_count : Int
+  max_header_bytes : Int
+  max_metadata_bytes : Int
+  max_metadata_entries : Int
+  max_path_bytes : Int
+  max_identifier_attempts : Int
+} derive(Eq, @debug.Debug)
+pub fn TusLimits::default() -> Self
+pub fn TusLimits::strict_test() -> Self
+
+pub(all) struct TusRequest {
+  http_method : HttpMethod
+  path : String
+  headers : Headers
+  body : Bytes
+} derive(Eq, @debug.Debug)
+
+pub(all) struct TusResponse {
+  status : Int
+  headers : Headers
+  body : Bytes
+  trace : Array[TraceStep]
+  error : TusError?
+} derive(Eq, @debug.Debug)
+
+pub(all) enum TusRoute {
+  Collection
+  Resource(String)
+} derive(Eq, @debug.Debug)
+
+pub(all) enum UploadLength {
+  Known(Int64)
+  Deferred
+} derive(Eq, @debug.Debug)
+pub fn UploadLength::is_deferred(Self) -> Bool
+pub fn UploadLength::known(Self) -> Int64?
+
+pub(all) enum UploadLifecycle {
+  Active
+  Complete
+} derive(Eq, @debug.Debug)
+
+pub(all) struct UploadRecord {
+  identifier : String
+  offset : Int64
+  length : UploadLength
+  metadata : Array[MetadataEntry]
+  revision : Int64
+  lifecycle : UploadLifecycle
+  data : Bytes
+} derive(Eq, @debug.Debug)
+pub fn UploadRecord::is_complete(Self) -> Bool
+pub fn UploadRecord::remaining(Self) -> Int64?
+
+// Type aliases
+
+// Traits

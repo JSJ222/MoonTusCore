@@ -10,6 +10,6 @@ license = "Apache-2.0"
 
 keywords = [ "tus", "resumable-upload", "http", "protocol", "state-machine" ]
 
-preferred_target = "wasm-gc"
+preferred_target = "native"
 
 description = "Framework-neutral tus 1.0 resumable upload protocol state machine for MoonBit"
