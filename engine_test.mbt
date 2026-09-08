@@ -63,3 +63,19 @@ test "engine never mutates after rejected overshoot" {
   assert_eq(rejected.status, 413)
   assert_eq(engine.snapshot(identifier).unwrap().offset, 0L)
 }
+
+///|
+test "engine honors patch method override" {
+  let engine = TusEngine::new(config=config(limits=TusLimits::strict_test())).unwrap()
+  let created = engine.handle(create_request("3"))
+  let location = created.headers.first("location").unwrap()
+  let headers = Headers::empty()
+    .add("Tus-Resumable", "1.0.0")
+    .add("X-HTTP-Method-Override", "PATCH")
+    .add("Upload-Offset", "0")
+    .add("Content-Type", "application/offset+octet-stream")
+    .add("Content-Length", "3")
+  let response = engine.handle(request("POST", location, headers~, body=b"abc"))
+  assert_eq(response.status, 204)
+  assert_eq(response_offset(response), Some(3L))
+}

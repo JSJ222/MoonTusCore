@@ -51,6 +51,7 @@ test "response renderer includes structured error" {
     content=(
       #|status 409
       #|tus-resumable: 1.0.0
+      #|tus-version: 1.0.0
       #|error-code: TUS_OFFSET_MISMATCH
       #|error-message: Upload-Offset does not match the resource offset
       #|trace: offset.reject [tus-1.0.0/core] client is stale

@@ -28,10 +28,22 @@ test "metadata rejects repeated key" {
 
 ///|
 test "metadata rejects malformed separators" {
-  for value in [",name YQ==", "name  YQ==", "name ", "bad key YQ=="] {
+  for value in [",name YQ==", "name  YQ==", "bad key YQ=="] {
     match parse_upload_metadata(value, TusLimits::strict_test()) {
       Err(error) => assert_eq(error.kind, InvalidMetadata)
       Ok(_) => fail("malformed metadata must fail")
+    }
+  }
+}
+
+///|
+test "metadata accepts explicit empty value separator" {
+  match parse_upload_metadata("name ", TusLimits::strict_test()) {
+    Err(_) => fail("the tus grammar permits an empty encoded value")
+    Ok(entries) => {
+      assert_eq(entries.length(), 1)
+      assert_eq(entries[0].value, b"")
+      inspect(serialize_upload_metadata(entries), content="name")
     }
   }
 }

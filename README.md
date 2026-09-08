@@ -21,9 +21,11 @@ request into TusRequest; storage adapters commit only a validated AppendPlan.
 ## Features
 
 - Strict Tus-Resumable 1.0.0 negotiation and duplicate-preserving headers.
+- Core X-HTTP-Method-Override interpretation before request routing.
 - OPTIONS, collection POST, resource HEAD, and offset-checked PATCH.
 - Known and deferred upload lengths with overflow-safe integer parsing.
 - Strict RFC 4648 decoding for ordered, duplicate-free Upload-Metadata.
+- HEAD reporting of offset, length/deferred state, and creation metadata.
 - Configurable upload, patch, header, path, and metadata resource budgets.
 - Revision plus offset compare-and-swap semantics; rejection never mutates.
 - Structured stable error codes and protocol decision traces.

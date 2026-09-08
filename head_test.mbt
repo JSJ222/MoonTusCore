@@ -43,6 +43,24 @@ test "head reports deferred length distinctly" {
 }
 
 ///|
+test "head returns creation metadata" {
+  let store = MemoryStore::new()
+  let metadata = [metadata_entry("filename", b"a.txt").unwrap()]
+  let created = store
+    .create({ length: Known(1L), metadata, }, TusLimits::strict_test())
+    .unwrap()
+  let response = handle_head(
+    head_request(created.identifier),
+    store,
+    config(limits=TusLimits::strict_test()),
+  )
+  assert_eq(
+    response.headers.first("Upload-Metadata"),
+    Some("filename YS50eHQ="),
+  )
+}
+
+///|
 test "head reports not found without leaking store details" {
   let response = handle_head(
     head_request("missing"),

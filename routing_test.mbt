@@ -75,3 +75,32 @@ test "configuration rejects non-canonical collection path" {
     }
   }
 }
+
+///|
+test "method override replaces actual method" {
+  let original = request(
+    "POST",
+    "/files/a",
+    headers=version_headers().add("X-HTTP-Method-Override", "PATCH"),
+    body=b"x",
+  )
+  match apply_method_override(original) {
+    Err(_) => fail("known override must parse")
+    Ok(effective) => assert_eq(effective.http_method, Patch)
+  }
+}
+
+///|
+test "method override remains a singleton" {
+  let original = request(
+    "POST",
+    "/files/a",
+    headers=version_headers()
+      .add("X-HTTP-Method-Override", "PATCH")
+      .add("X-HTTP-Method-Override", "HEAD"),
+  )
+  match apply_method_override(original) {
+    Err(error) => assert_eq(error.kind, DuplicateSingletonHeader)
+    Ok(_) => fail("ambiguous override must fail")
+  }
+}

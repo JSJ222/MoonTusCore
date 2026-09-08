@@ -19,6 +19,11 @@ pub fn TusEngine::new(
 
 ///|
 pub fn TusEngine::handle(self : TusEngine, request : TusRequest) -> TusResponse {
+  let request = match apply_method_override(request) {
+    Err(error) =>
+      return failure_response(error, headers=version_response_headers())
+    Ok(request) => request
+  }
   match request.http_method {
     Options => self.handle_options(request)
     Post => handle_creation(request, self.store, self.config)

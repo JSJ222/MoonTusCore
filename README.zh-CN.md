@@ -7,6 +7,7 @@ MoonTusCore 是使用 MoonBit 原创实现的 tus 1.0 可恢复上传协议决�
 v0.1 已实现 Core、Creation 和 Creation-Defer-Length，提供：
 
 - OPTIONS、POST、HEAD、PATCH 协议流程；
+- X-HTTP-Method-Override 方法覆盖及 HEAD 创建元数据回显；
 - Upload-Offset 冲突检测与 revision + offset 比较交换提交；
 - 已知长度及延迟声明长度；
 - 有序 Upload-Metadata 和严格 RFC 4648 Base64；

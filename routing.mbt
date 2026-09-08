@@ -58,6 +58,31 @@ pub fn require_tus_version(headers : Headers) -> Result[Unit, TusError] {
 }
 
 ///|
+/// Apply the core protocol's X-HTTP-Method-Override before routing. The
+/// returned request keeps headers and body but exposes the effective method.
+pub fn apply_method_override(
+  request : TusRequest,
+) -> Result[TusRequest, TusError] {
+  match request.headers.singleton("x-http-method-override") {
+    Err(error) => Err(error)
+    Ok(None) => Ok(request)
+    Ok(Some(value)) => {
+      let effective = parse_http_method(trim_ows(value))
+      match effective {
+        Other(name) => Err(invalid_method(name))
+        _ =>
+          Ok({
+            http_method: effective,
+            path: request.path,
+            headers: request.headers,
+            body: request.body,
+          })
+      }
+    }
+  }
+}
+
+///|
 pub fn classify_path(
   path : String,
   collection_path : String,

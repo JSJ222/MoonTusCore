@@ -10,6 +10,8 @@ pub const TUS_VERSION : String = "1.0.0"
 
 pub fn append_trace(AppendPlan) -> Array[TraceStep]
 
+pub fn apply_method_override(TusRequest) -> Result[TusRequest, TusError]
+
 pub fn ascii_equal_ignore_case(String, String) -> Bool
 
 pub fn ascii_lower(String) -> String

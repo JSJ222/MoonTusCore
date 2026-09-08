@@ -85,13 +85,6 @@ fn parse_metadata_entry(
     None => ""
     Some(index) => entry[index + 1:].to_owned()
   }
-  if separator is Some(_) && encoded.length() == 0 {
-    return Err(
-      invalid_metadata(
-        "metadata entry with an empty value must omit the separator",
-      ),
-    )
-  }
   match decode_base64(encoded, remaining_budget) {
     Err(error) => Err(error)
     Ok(decoded) => Ok({ key, value: decoded, encoded_value: encoded, })

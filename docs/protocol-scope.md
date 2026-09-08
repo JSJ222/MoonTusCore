@@ -6,9 +6,10 @@ Creation-Defer-Length.
 ## Implemented
 
 - OPTIONS capability discovery.
+- X-HTTP-Method-Override interpretation before routing.
 - POST creation with exactly one length form.
 - Ordered Upload-Metadata with strict padded RFC 4648 values.
-- HEAD offset and known/deferred length reporting.
+- HEAD offset, known/deferred length, and creation metadata reporting.
 - PATCH with exact Content-Length, Upload-Offset, and required media type.
 - Final length declaration on PATCH for deferred resources.
 - Configurable pre-mutation budgets and stable errors.
