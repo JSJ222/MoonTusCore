@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ubuntu:
+    name: Ubuntu all targets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: hustcer/setup-moonbit@v1.22
+      - run: moon fmt --check
+      - run: moon check --target all --deny-warn
+      - run: moon test --target all --deny-warn
+      - run: moon build --target all
+
+  windows:
+    name: Windows all targets
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: hustcer/setup-moonbit@v1.22
+      - run: moon fmt --check
+      - run: moon check --target all --deny-warn
+      - run: moon test --target all --deny-warn
+      - run: moon build --target all
+
+  documentation:
+    name: Documentation and public API
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: hustcer/setup-moonbit@v1.22
+      - run: moon doc
+      - name: Verify committed interfaces
+        run: |
+          moon info
+          git diff --exit-code
+
+  native-smoke:
+    name: Native CLI and examples
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: hustcer/setup-moonbit@v1.22
+      - name: Run demos
+        run: |
+          moon run cmd/moontus --target native -- demo success
+          moon run cmd/moontus --target native -- demo deferred --json
+          moon run cmd/moontus --target native -- demo conflict
+          moon run cmd/moontus --target native -- demo limits
+          moon run cmd/moontus --target native -- capabilities
+      - name: Run library integration example
+        run: moon run examples/library-demo --target native
