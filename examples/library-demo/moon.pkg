@@ -1,0 +1,5 @@
+import {
+  "oyjh0381/tus-core" @tus,
+}
+
+pkgtype(kind: "executable")
