@@ -10,6 +10,8 @@ compare-and-swap storage contract, an in-memory reference store, deterministic
 scenario reports, executable conformance vectors, a Native CLI, and a library
 example.
 
+The current changes remain local; see [2026-10-01 verification](docs/LOCAL_VERIFICATION_2026-10-01.md).
+
 ## Why a protocol core?
 
 Resumable upload bugs usually live between the HTTP adapter and storage:
@@ -25,6 +27,8 @@ request into TusRequest; storage adapters commit only a validated AppendPlan.
 - OPTIONS, collection POST, resource HEAD, and offset-checked PATCH.
 - Known and deferred upload lengths with overflow-safe integer parsing.
 - Strict RFC 4648 decoding for ordered, duplicate-free Upload-Metadata.
+- Checked outbound Upload-Metadata serialization for adapters that construct
+  headers from application values; it re-encodes bytes and enforces wire limits.
 - HEAD reporting of offset, length/deferred state, and creation metadata.
 - Configurable upload, patch, header, path, and metadata resource budgets.
 - Revision plus offset compare-and-swap semantics; rejection never mutates.
@@ -74,12 +78,16 @@ The in-memory TusEngine is a runnable reference. A persistent adapter uses
 plan_creation, plan_append, validate_record, and AppendPlan to preserve the same
 validation-before-mutation and compare-and-swap rules.
 
+When constructing an outgoing metadata header, use
+`serialize_upload_metadata_checked(entries, limits)` and handle its error
+instead of using the unbounded convenience serializer.
+
 ## Run
 
 ~~~bash
-moon check --target all --deny-warn
-moon test --target all --deny-warn
-moon build --target all
+moon check --target all --deny-warn --warn-list=-implicit_impl_as_method-test_unqualified_package
+moon test --target all --deny-warn --warn-list=-implicit_impl_as_method-test_unqualified_package
+moon build --target all --deny-warn --warn-list=-implicit_impl_as_method-test_unqualified_package
 moon run cmd/moontus --target native -- demo success
 moon run cmd/moontus --target native -- demo deferred --json
 moon run examples/library-demo --target native
