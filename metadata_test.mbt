@@ -85,3 +85,56 @@ test "metadata constructor validates keys" {
     Ok(_) => fail("comma in key must fail")
   }
 }
+
+///|
+test "checked metadata serialization enforces outbound wire policy" {
+  let entry = metadata_entry("name", b"MoonBit").unwrap()
+  let canonical = serialize_upload_metadata_checked(
+    [entry],
+    TusLimits::strict_test(),
+  ).unwrap()
+  assert_eq(
+    metadata_get(
+      parse_upload_metadata(canonical, TusLimits::strict_test()).unwrap(),
+      "name",
+    ),
+    Some(b"MoonBit"),
+  )
+  let small = { ..TusLimits::strict_test(), max_metadata_bytes: 8, }
+  match serialize_upload_metadata_checked([entry], small) {
+    Err(error) => assert_eq(error.kind, MetadataTooLarge)
+    Ok(_) => fail("outbound wire budget must be enforced")
+  }
+  match
+    serialize_upload_metadata_checked([entry, entry], TusLimits::strict_test()) {
+    Err(error) => assert_eq(error.kind, DuplicateMetadataKey)
+    Ok(_) => fail("outbound duplicate keys must be rejected")
+  }
+  let one = { ..TusLimits::strict_test(), max_metadata_entries: 1, }
+  match
+    serialize_upload_metadata_checked(
+      [entry, metadata_entry("other", b"").unwrap()],
+      one,
+    ) {
+    Err(error) => assert_eq(error.kind, TooManyMetadataEntries)
+    Ok(_) => fail("outbound entry budget must be enforced")
+  }
+  let forged : MetadataEntry = {
+    key: "bad,key",
+    value: b"x",
+    encoded_value: "eA==",
+  }
+  match serialize_upload_metadata_checked([forged], TusLimits::strict_test()) {
+    Err(error) => assert_eq(error.kind, InvalidMetadata)
+    Ok(_) => fail("outbound metadata keys must be validated")
+  }
+  let stale : MetadataEntry = {
+    key: "name",
+    value: b"MoonBit",
+    encoded_value: "stale",
+  }
+  assert_eq(
+    serialize_upload_metadata_checked([stale], TusLimits::strict_test()).unwrap(),
+    canonical,
+  )
+}

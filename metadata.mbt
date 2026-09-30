@@ -108,6 +108,95 @@ pub fn serialize_upload_metadata(entries : Array[MetadataEntry]) -> String {
 }
 
 ///|
+/// Serialize application-provided metadata with the same wire and entry
+/// budgets enforced for incoming Upload-Metadata. Values are re-encoded from
+/// bytes rather than trusting a caller-supplied encoded_value field.
+pub fn serialize_upload_metadata_checked(
+  entries : Array[MetadataEntry],
+  limits : TusLimits,
+) -> Result[String, TusError] {
+  if limits.max_metadata_bytes < 0 {
+    return Err(metadata_size_error(limits.max_metadata_bytes, 0))
+  }
+  if entries.length() > limits.max_metadata_entries {
+    return Err(
+      tus_error(
+        TooManyMetadataEntries,
+        "TUS_METADATA_ENTRY_LIMIT",
+        "Upload-Metadata contains more entries than configured",
+        status=413,
+        header_name=Some("upload-metadata"),
+        expected=Some(limits.max_metadata_entries.to_string()),
+        actual=Some(entries.length().to_string()),
+      ),
+    )
+  }
+  let output = StringBuilder()
+  let seen : Array[MetadataEntry] = []
+  let mut used = 0
+  for index, entry in entries {
+    if !is_metadata_key(entry.key) {
+      return Err(
+        invalid_metadata(
+          "metadata key must be visible ASCII without comma or space",
+        ),
+      )
+    }
+    if metadata_contains_key(seen, entry.key) {
+      return Err(
+        tus_error(
+          DuplicateMetadataKey,
+          "TUS_METADATA_KEY_REPEATED",
+          "Upload-Metadata repeats a key",
+          header_name=Some("upload-metadata"),
+          actual=Some(entry.key),
+        ),
+      )
+    }
+    let separator = if index > 0 { 1 } else { 0 }
+    let remaining = limits.max_metadata_bytes - used
+    if separator > remaining || entry.key.length() > remaining - separator {
+      return Err(
+        metadata_size_error(
+          limits.max_metadata_bytes,
+          used + separator + entry.key.length(),
+        ),
+      )
+    }
+    if index > 0 {
+      output.write_char(',')
+    }
+    output.write_string(entry.key)
+    used = used + separator + entry.key.length()
+    if entry.value.length() > 0 {
+      let remaining = limits.max_metadata_bytes - used
+      if remaining < 1 || entry.value.length() > remaining - 1 {
+        return Err(
+          metadata_size_error(
+            limits.max_metadata_bytes,
+            used + 1 + entry.value.length(),
+          ),
+        )
+      }
+      let encoded = encode_base64(entry.value)
+      if encoded.length() > remaining - 1 {
+        return Err(
+          metadata_size_error(
+            limits.max_metadata_bytes,
+            used + 1 + encoded.length(),
+          ),
+        )
+      }
+      output.write_char(' ')
+      output.write_string(encoded)
+      used = used + 1 + encoded.length()
+    }
+    seen.push(entry)
+  }
+  Ok(output.to_string())
+}
+
+///|
 pub fn metadata_entry(
   key : String,
   value : Bytes,

@@ -146,6 +146,8 @@ pub fn run_scenario(Array[ScenarioAction], config? : TusConfig) -> Result[Scenar
 
 pub fn serialize_upload_metadata(Array[MetadataEntry]) -> String
 
+pub fn serialize_upload_metadata_checked(Array[MetadataEntry], TusLimits) -> Result[String, TusError]
+
 pub fn storage_conflict(String) -> TusError
 
 pub fn success_response(Int, headers? : Headers, trace? : Array[TraceStep]) -> TusResponse
