@@ -11,7 +11,7 @@ fn main {
   match args[1] {
     "demo" => run_demo_command(args)
     "capabilities" => print_capabilities()
-    "version" | "--version" | "-V" => println("moontus 0.1.0")
+    "version" | "--version" | "-V" => println("moontus 0.1.1")
     "help" | "--help" | "-h" => println(@tus.demo_help())
     command => {
       println("MOONTUS_ARGUMENT: unknown command: " + command)

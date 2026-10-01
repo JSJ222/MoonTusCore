@@ -17,10 +17,12 @@ v0.1 已实现 Core、Creation 和 Creation-Defer-Length，提供：
 
 ## 本地验证
 
+安装已发布的库：`moon add JSJ222/tus-core@0.1.1`。
+
 ~~~bash
-moon check --target all --deny-warn
-moon test --target all --deny-warn
-moon build --target all
+moon check --target all --deny-warn --warn-list=-implicit_impl_as_method-test_unqualified_package
+moon test --target all --deny-warn --warn-list=-implicit_impl_as_method-test_unqualified_package
+moon build --target all --deny-warn --warn-list=-implicit_impl_as_method-test_unqualified_package
 moon run cmd/moontus --target native -- demo success
 moon run cmd/moontus --target native -- demo conflict
 moon run cmd/moontus --target native -- demo deferred --json
@@ -37,5 +39,5 @@ v0.1 不实现 Creation-With-Upload、Checksum、Expiration、Termination、
 Concatenation、HTTP 服务端/客户端、认证、租户配额和病毒扫描，也不会在
 OPTIONS 中宣称支持这些扩展。完整边界见 docs/protocol-scope.md。
 
-GitHub 公开仓库位于 https://github.com/JSJ222/MoonTusCore；Gitlink 镜像与
-Mooncakes 发布尚待完成。
+GitHub 公开仓库位于 https://github.com/JSJ222/MoonTusCore；Mooncakes 包位于
+https://mooncakes.io/docs/JSJ222/tus-core。Gitlink 镜像不在本次发布范围内。

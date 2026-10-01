@@ -10,7 +10,7 @@ compare-and-swap storage contract, an in-memory reference store, deterministic
 scenario reports, executable conformance vectors, a Native CLI, and a library
 example.
 
-The current changes remain local; see [2026-10-01 verification](docs/LOCAL_VERIFICATION_2026-10-01.md).
+For the current patch's verification, see [2026-10-01 verification](docs/LOCAL_VERIFICATION_2026-10-01.md).
 
 ## Why a protocol core?
 
@@ -38,14 +38,15 @@ request into TusRequest; storage adapters commit only a validated AppendPlan.
 
 ## Install
 
-After publication:
+Install the current release:
 
 ~~~bash
-moon add JSJ222/tus-core
+moon add JSJ222/tus-core@0.1.1
 ~~~
 
 The source repository is public at
-https://github.com/JSJ222/MoonTusCore. The Mooncakes release remains pending.
+https://github.com/JSJ222/MoonTusCore. The package page is
+https://mooncakes.io/docs/JSJ222/tus-core.
 
 ## Quick start
 
@@ -132,8 +133,8 @@ approximated. See [protocol scope](docs/protocol-scope.md).
 
 ## Project status
 
-The v0.1 implementation is buildable and tested, and its GitHub repository is
-public. Gitlink mirroring and Mooncakes publication remain pending.
+The v0.1.1 implementation is buildable and tested, and its GitHub repository
+and Mooncakes package are public. Gitlink mirroring was not part of this release.
 
 ## License
 
