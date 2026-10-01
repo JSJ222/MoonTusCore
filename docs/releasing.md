@@ -10,5 +10,5 @@
 6. Run moon publish --dry-run, inspect the package, then publish.
 7. Verify the public Mooncakes page, installation command, tag, and notes.
 
-The GitHub repository has been created. Gitlink mirroring and Mooncakes
-publication remain pending.
+The v0.1.1 package is public on Mooncakes, and the GitHub repository and CI are
+public. Gitlink mirroring is outside this release.

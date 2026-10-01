@@ -1,7 +1,7 @@
 # Local verification — 2026-10-01
 
-This records the current local-only delta; it is not a claim that this delta has
-passed remote CI or been uploaded to GitHub or mooncakes.io.
+This records the v0.1.1 release verification. The change is available in the
+public GitHub repository and on mooncakes.io.
 
 - Toolchain: `moonc 0.10.14+7d59c7ec9`, `moon 0.1.20260920`.
 - Change: Checked outbound metadata serialization canonicalizes values and enforces key, count, and wire budgets.
@@ -13,6 +13,12 @@ passed remote CI or been uploaded to GitHub or mooncakes.io.
   build artifacts and downloaded dependencies.
 - License: Apache-2.0; existing README, CI workflow, examples, and tests remain
   part of the repository.
+- GitHub `main`: every commit has `JSJ222` as author and committer; the
+  rewritten history preserves the project file tree.
+- GitHub Actions: [CI run 36823909581](https://github.com/JSJ222/MoonTusCore/actions/runs/36823909581)
+  passed after the history update.
+- Mooncakes: `JSJ222/tus-core` version `0.1.1` was published successfully and
+  confirmed by a registry search.
 
 For moonc 0.10.14, strict check/build/test use
 `--deny-warn --warn-list=-implicit_impl_as_method-test_unqualified_package`. The warning list exempts only the compiler's
@@ -30,6 +36,6 @@ moon test --target all --deny-warn --warn-list=-implicit_impl_as_method-test_unq
 moon run examples/library-demo --target native
 ```
 
-Before contest acceptance, the owner must authorize/upload this delta, verify
-public GitHub access and the actual remote CI run, then publish or update the
-mooncakes.io package as applicable. Existing release records are historical.
+The published package remains subject to the documented protocol scope and
+security limits; passing these checks does not imply support for unimplemented
+tus extensions or a production-ready HTTP server.
